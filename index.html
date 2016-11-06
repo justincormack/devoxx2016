@@ -1,0 +1,270 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Docker Security for Developers</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+</head>
+<body class="list">
+	<style>
+#Cover p.author {font-size: 200%;}
+</style>
+	<header class="caption">
+		<h1>Docker Security for Developers</h1>
+		<p>Justin Cormack</p>
+	</header>
+	<section class="slide cover" id="Cover"><div>
+		<h2>Docker Security for Developers</h2>
+		<p>Justin Cormack</p>
+		<img src="pictures/steampowerstation.jpg" alt="" width="100%">
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+			-->
+		<style>
+			#Cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+				}
+			#Cover p {
+				margin:10px 0 0;
+				text-align:center;
+				color:#FFF;
+				font-style:italic;
+				font-size:20px;
+				}
+				#Cover p a {
+					color:#FFF;
+					}
+				a.linked { text-decoration: none; color: #fff; border: none;}
+                span.strike { text-decoration: line-through;}
+                .pic img { max-width:90%; height:90%; max-height: 90%;}
+                .pic a { text-decoration: none; color: #fff;}
+				.shiftimage { position: relative; top: -40px; left: 100px;}
+				.floatimage { float: right;}
+				pre.small { font-size: 60%;}
+		</style>
+	</div></section>
+
+<section class="slide">
+<div>
+<h2>Justin Cormack</h2>
+<p>Cambridge based engineer at Docker <a href="https://twitter.com/justincormack">@justincormack</a>
+<br/>&nbsp;
+	<img src="pictures/vector_h.svg" alt="" width="100%">
+</div>
+</section>
+
+<section class="slide">
+<div>
+<p>Co-author of <a href="https://www.safaribooksonline.com/library/view/docker-in-the/9781939902184/">Docker in the Trenches: Successful Production Deployment</a>
+<!--br/>
+50% discount code <a href="https://gum.co/lQGH/softwarecircus">https://gum.co/lQGH/softwarecircus</a-->
+<br/>
+<a href="https://www.safaribooksonline.com/library/view/docker-in-the/9781939902184/" class="linked"><img src="pictures/docker_cover.png" width="40%"/></a>
+</div>
+</section>
+
+<section class="slide shout">
+<div>
+<h2>Docker Security for Developers</h2>
+</div>
+</section>
+
+<section class="slide shout">
+<div>
+<h2>No Silos</h2>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>No silos...</h2>
+<ul>
+<li>DevSecOps
+<li>Teams working together to deliver quality software
+<li>Security as an ongoing process not a checkbox
+</ul>
+</div>
+</section>
+
+
+<section class="slide">
+<div>
+<h2>Organization first</h2>
+<ul>
+<li>Embed security people in your teams. They need to understand what your product is doing too.
+<li>Understand the threat model from the start, and the main risks
+<li>Postmortems when things go wrong, not to blame, to improve
+</ul>
+</div>
+</section>
+
+
+<section class="slide">
+<div>
+<h2>Automation and tooling second</h2>
+<ul>
+<li>Once the team structure is in place, start to find tools
+<li>Tools that generate hundreds of pages of PDFs are no use
+<li>You want to validate behaviour in test and in production
+</ul>
+</div>
+</section>
+
+<section class="slide pic">
+<div>
+<a href="http://itrevolution.com/devops-handbook">
+<img src="pictures/devops.jpg"/>
+</a>
+</div>
+</section>
+
+<section class="slide shout">
+<div>
+<h2>How does Docker help?</h2>
+
+	<img src="pictures/vector_h.svg" alt="" width="100%">
+</div>
+</section>
+
+<section class="slide shout">
+<div>
+<h2>Try to make security easier</h2>
+
+	<img src="pictures/vector_h.svg" alt="" width="100%">
+</div>
+</section>
+
+
+<section class="slide pic">
+<div>
+<img src="pictures/comparison.png"/>
+</div>
+</section>
+
+<section class="slide shout">
+<div>
+<h2>BUILD</h2>
+<img src="pictures/vector_h.svg" alt="" width="100%">
+</div>
+</section>
+
+
+
+<section class="slide">
+<div>
+<h2>Official Images</h2>
+<ul>
+<li>Best starting point for your containers
+<li>Timely security updates in all dependencies
+<li>Sensible security defaults
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>JDK Official Images</h2>
+<ul>
+	<li>openjdk:6 openjdk:7 openjdk:8 openjdk:9 &ndash; based on Debian Jessie 253M
+	<li>openjdk:7-alpine openjdk:8-alpine &ndash; based on Alpine Linux 78M
+	<li>also corresponding openjdk:7-jre and openjdk:8-jre-alpine
+	<li>IBM Java also available ibmjava:8-jre etc
+	<li><a href="https://hub.docker.com/r/library/openjdk/">https://hub.docker.com/r/library/openjdk/</a>
+	<li><a href="https://hub.docker.com/_/ibmjava/">https://hub.docker.com/_/ibmjava/</a>
+</ul>
+</div>
+</section>
+
+<section class="slide shout">
+<div>
+<h2>SHIP</h2>
+<img src="pictures/vector_h.svg" alt="" width="100%">
+</div>
+</section>
+
+
+<section class="slide">
+<div>
+<h2>Docker Content Trust</h2>
+<ul>
+<li>Sign images at point of authorship (using Notary)
+<li>Removes implicit trust of storage service and network
+<li>Guarantee integrity of your images when pulled
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>Image Scanning</h2>
+<ul>
+<li>Looks inside your images and finds libraries you use
+<li>Checks if there are known security issues
+<li>Service available at <a href="https://cloud.docker.com">cloud.docker.com</a>
+</ul>
+</div>
+</section>
+
+<section class="slide pic">
+<div>
+<img src="pictures/vulnerable.png"/>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>Known issues are a major problem developers can fix</h2>
+<ul>
+<li>PCI Data Breach Investigation Report (DBIR) studying 85,000 data breaches in 2014 said that ten known CVEs accounted for 97% of exploits.
+<li>Eight of the ten were over ten years old.
+<li>The typical organization uses 18,614 different software components. 7.5% had known vulnerabilities.
+</ul>
+</div>
+</section>
+
+
+<section class="slide shout">
+<div>
+<h2>RUN</h2>
+<img src="pictures/vector_h.svg" alt="" width="100%">
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="slide">
+<div>
+<h2>Questions?</h2>
+<ul>
+<li><a href="https://twitter.com/justincormack">@justincormack</a>
+<li>justin.cormack@docker.com
+<li><code>docker pull justincormack/devopsdays2016</code>
+<p>&nbsp;
+	<img src="pictures/vector_h.svg" alt="" width="100%"/>
+</div>
+</section>
+
+
+	<p class="badge"><a href="https://github.com/justincormack/devopsdays2016">Fork me on Github</a></p>
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"><div></div></div>
+	<script src="shower/shower.min.js"></script>
+</html>
