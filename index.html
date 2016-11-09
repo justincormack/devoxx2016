@@ -89,6 +89,8 @@
 <li>DevSecOps
 <li>Teams working together to deliver quality software
 <li>Security as an ongoing process not a checkbox
+<li>Ongoing improvements and learning, not blame culture
+<li>More rapid deployment of good practise across all software
 </ul>
 </div>
 </section>
@@ -99,7 +101,7 @@
 <h2>Organization first</h2>
 <ul>
 <li>Embed security people in your teams. They need to understand what your product is doing too.
-<li>Understand the threat model from the start, and the main risks
+<li>Make sure all the team nderstands the threat model from the start, and the key risks
 <li>Postmortems when things go wrong, not to blame, to improve
 </ul>
 </div>
@@ -110,7 +112,7 @@
 <div>
 <h2>Automation and tooling second</h2>
 <ul>
-<li>Once the team structure is in place, start to find tools
+<li>Once the team structure is in place, start to find tools that help the goals
 <li>Tools that generate hundreds of pages of PDFs are no use
 <li>You want to validate behaviour in test and in production
 </ul>
@@ -120,7 +122,7 @@
 <section class="slide pic">
 <div>
 <a href="http://itrevolution.com/devops-handbook">
-<img src="pictures/devops.jpg"/>
+<img src="pictures/devops-handbook.jpg"/>
 </a>
 </div>
 </section>
@@ -135,7 +137,7 @@
 
 <section class="slide shout">
 <div>
-<h2>Try to make security easier</h2>
+<h2>Try to make security usable</h2>
 
 	<img src="pictures/vector_h.svg" alt="" height="20%" class="logo">
 </div>
@@ -237,6 +239,33 @@
 </div>
 </section>
 
+<section class="slide">
+<div>
+<h2>Secrets</h2>
+<ul>
+<li>Don't commit secret keys into your source repository!
+<li>Don't use environment variables for secrets
+<li>Can use key storage mechanisms like Vault
+<li>Docker 1.13 is going to include built in secrets management
+</ul>
+</div>
+</section>
+
+<section class="slide">
+<div>
+<h2>Secrets</h2>
+<pre>
+<code>
+> cat test_key | docker secret create ssh-dev
+> docker service create --name nginx --secret ssh-dev nginx
+> docker exec -ti 06 cat /run/secrets/id_rsa
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA2Xz+yHs5pDgeCyv7ul10MkSYcAu79sRBh/VNGXBPMW1QbBcJ
+...
+</code>
+</pre>
+</div>
+</section>
 
 <section class="slide">
 <div>
@@ -251,7 +280,7 @@
 
 <section class="slide">
 <div>
-<h2>Least Privilege</h2>
+<h2>Know your code</h2>
 <ul>
 <li>You need to understand what your application does, and what else it needs access to
 <li>Microservices make this easier: one service, one function
@@ -262,11 +291,25 @@
 
 <section class="slide">
 <div>
+<h2>Know your code</h2>
+<ul>
+<li>List every other service you should connect to
+<li>What authentication is used in these connections?
+<li>What untrusted user data do we get in each transaction?
+<li>What secrets does the service need? Do these only give access to exactly what is needed? eg AWS IAM...
+</ul>
+</div>
+</section>
+
+
+<section class="slide">
+<div>
 <h2>Least Privilege</h2>
 <ul>
 <li>Containers are about least privilege!
 <li>They restrict the files available to containers
 <li>They restrict network access, to just published ports
+<li>They can help in this process, but they are not a magic bullet.
 </ul>
 </div>
 </section>
@@ -290,20 +333,10 @@
 <blockquote>
 “Gartner asserts that applications deployed in containers are more secure than applications deployed on the bare OS.”
 </blockquote>
+<p>Companies like IBM are deploying container based public cloud, the most hostile environment.
 </div>
 </section>
 
-<section class="slide">
-<div>
-<h2>Secrets</h2>
-<ul>
-<li>Don't commit secret keys into your source repository!
-<li>Don't use environment variables for secrets
-<li>Can use key storage mechanisms like Vault
-<li>Docker 1.13 is going to include built in secrets management
-</ul>
-</div>
-</section>
 
 
 
